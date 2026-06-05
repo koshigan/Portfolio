@@ -1,100 +1,222 @@
-import React from 'react'
-import { FaArrowRight, FaGithub, FaLinkedin } from 'react-icons/fa'
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowDown, MessageSquare, ShieldAlert } from 'lucide-react'
+
+const ThreeHero = lazy(() => import('./ThreeHero'))
+
+// Automated Count-Up helper component
+function Counter({ target, duration = 1600, suffix = '' }) {
+  const [count, setCount] = useState(0)
+  const elementRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let startTimestamp = null
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+            const easeOutCubic = 1 - Math.pow(1 - progress, 3)
+            setCount(Math.round(easeOutCubic * target))
+            if (progress < 1) {
+              window.requestAnimationFrame(step)
+            }
+          };
+          window.requestAnimationFrame(step)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [target, duration])
+
+  return <span ref={elementRef}>{count.toLocaleString()}{suffix}</span>
+}
 
 export default function Hero() {
+  const heroRef = useRef(null)
+  
+  // Create subtle scroll-based parallax for backgrounds
+  const { scrollY } = useScroll()
+  const yBg = useTransform(scrollY, [0, 600], [0, 80])
+  const yBgReverse = useTransform(scrollY, [0, 600], [0, -80])
+
+  const stats = [
+    { value: 8, label: 'GitHub Projects', suffix: '+' },
+    { value: 18, label: 'Technologies', suffix: '+' },
+    { value: 45, label: 'Internship Days', suffix: '' },
+    { value: 1200, label: 'Coding Hours', suffix: '+' },
+  ]
+
+  // Magnetic CTA states
+  const [ctaPos1, setCtaPos1] = useState({ x: 0, y: 0 })
+  const [ctaPos2, setCtaPos2] = useState({ x: 0, y: 0 })
+
+  const handleMagneticMove = (e, setCtaPos) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.15
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.15
+    setCtaPos({ x, y })
+  }
+
+  const handleMagneticLeave = (setCtaPos) => {
+    setCtaPos({ x: 0, y: 0 })
+  }
+
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-ai-bg via-ai-bg-secondary to-ai-card">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6">
-            {/* Badge */}
-            <div className="inline-block">
-              <span className="px-4 py-2 bg-ai-cyan/10 text-ai-cyan rounded-full text-sm font-semibold border border-ai-cyan/30">
-                ✨ Developer with AI Powers
-              </span>
-            </div>
+    <section 
+      ref={heroRef}
+      id="home" 
+      className="relative min-h-screen pt-40 pb-12 px-6 sm:px-8 lg:px-12 flex flex-col justify-between overflow-hidden bg-ai-bg"
+    >
+      {/* Background Studio Grid */}
+      <div className="absolute inset-0 grid-bg z-0" aria-hidden="true" />
 
-            {/* Title */}
-            <div>
-              <h1 className="text-5xl md:text-6xl font-bold text-ai-text mb-4 leading-tight">
-                Your Name
-              </h1>
-              <p className="text-2xl text-ai-cyan font-semibold">
-                Full Stack Developer & AI Enthusiast
-              </p>
-            </div>
+      {/* 3D Animated Three.js background */}
+      <Suspense fallback={null}>
+        <ThreeHero />
+      </Suspense>
 
-            {/* Description */}
-            <p className="text-lg text-ai-text-secondary leading-relaxed max-w-xl">
-              Passionate about building cutting-edge web applications with modern technologies.
-              Specialized in React, AI integration, and developer tools that scale.
-            </p>
+      {/* Soft ambient colour blobs layered on top of 3D scene */}
+      <motion.div 
+        style={{ y: yBg }}
+        animate={{ x: [0, 15, 0], y: [0, 20, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-[-10%] right-[-5%] w-[45vw] h-[45vw] bg-ai-purple/6 rounded-full blur-[130px] pointer-events-none z-0" 
+      />
+      <motion.div 
+        style={{ y: yBgReverse }}
+        animate={{ x: [0, -20, 0], y: [0, -10, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-[-15%] left-[5%] w-[35vw] h-[35vw] bg-ai-cyan/5 rounded-full blur-[100px] pointer-events-none z-0" 
+      />
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="text-3xl font-bold text-ai-cyan">10+</div>
-                <div className="text-sm text-ai-text-secondary">Projects</div>
-              </div>
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="text-3xl font-bold text-ai-green">100%</div>
-                <div className="text-sm text-ai-text-secondary">Dedication</div>
-              </div>
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="text-3xl font-bold text-ai-purple">5+</div>
-                <div className="text-sm text-ai-text-secondary">Years Exp</div>
-              </div>
-            </div>
+      {/* Hero Header Status Info */}
+      <div className="relative z-10 w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-ai-border/30 pb-4">
+        <motion.div 
+          initial={{ opacity: 0, x: -15 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-wider text-ai-text-secondary"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+          </span>
+          Available for opportunities
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, x: 15 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-xs font-mono uppercase tracking-widest text-ai-cyan"
+        >
+          ECE · FULL-STACK · AI · IoT
+        </motion.div>
+      </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-8">
-              <a
-                href="#projects"
-                className="px-8 py-3 bg-ai-purple text-ai-text rounded-lg hover:bg-ai-purple hover:opacity-90 transition-all flex items-center gap-2 font-semibold border border-ai-purple"
-              >
-                View My Work <FaArrowRight />
-              </a>
-              <a
-                href="#contact"
-                className="px-8 py-3 border-2 border-ai-cyan text-ai-cyan rounded-lg hover:bg-ai-cyan hover:text-ai-bg transition-colors font-semibold"
-              >
-                Get in Touch
-              </a>
-            </div>
+      {/* Main Copy / Titles */}
+      <div className="relative z-10 my-auto pt-16 pb-12 max-w-7xl">
+        <h1 className="text-[10vw] sm:text-[8vw] lg:text-[7.2rem] font-bold tracking-tighter leading-[0.9] text-ai-text">
+          <span className="block overflow-hidden pb-2">
+            <motion.span 
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="block"
+            >
+              Building software
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden">
+            <motion.span 
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
+              className="block"
+            >
+              that creates{' '}
+              <em className="not-italic bg-gradient-to-r from-ai-purple via-ai-blue to-ai-cyan bg-clip-text text-transparent">
+                impact.
+              </em>
+            </motion.span>
+          </span>
+        </h1>
 
-            {/* Social Links */}
-            <div className="flex gap-4 pt-4">
-              <a href="https://github.com" className="p-3 bg-ai-purple text-ai-text rounded-full hover:bg-ai-blue transition-colors border border-ai-border">
-                <FaGithub size={24} />
-              </a>
-              <a href="https://linkedin.com" className="p-3 bg-ai-cyan text-ai-bg rounded-full hover:bg-ai-blue transition-colors border border-ai-border">
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </div>
-
-          {/* Right - Illustration/Image Area */}
-          <div className="hidden md:flex justify-center">
-            <div className="relative w-80 h-80">
-              <div className="absolute inset-0 bg-gradient-to-br from-ai-cyan to-ai-purple rounded-3xl opacity-20 animate-float"></div>
-              <div className="absolute inset-8 bg-gradient-to-tr from-ai-purple to-ai-cyan rounded-3xl opacity-30 animate-float" style={{animationDelay: '0.2s'}}></div>
-              
-              {/* Profile Image Placeholder */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden glow-teal">
-                <img 
-                  src="/assets/profile.jpg" 
-                  alt="Profile" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/320x320?text=Profile+Photo&bg=1a3a52&fg=ffffff'
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+        {/* Intro description & Actions */}
+        <div className="mt-12 grid md:grid-cols-12 gap-8 items-end">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="md:col-span-6 text-lg sm:text-xl text-ai-text-secondary leading-relaxed max-w-xl"
+          >
+            I engineer thoughtful digital products at the intersection of modern web architectures, connected systems, and artificial intelligence.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="md:col-span-6 flex flex-wrap gap-4 md:justify-end"
+          >
+            <motion.a 
+              href="#projects"
+              onMouseMove={(e) => handleMagneticMove(e, setCtaPos1)}
+              onMouseLeave={() => handleMagneticLeave(setCtaPos1)}
+              animate={{ x: ctaPos1.x, y: ctaPos1.y }}
+              className="px-8 py-3.5 bg-ai-text hover:bg-ai-cyan text-ai-bg font-semibold rounded-full flex items-center gap-6 shadow-xl hover:shadow-ai-cyan/10 transition-colors duration-300"
+            >
+              Explore my work <ArrowDown size={14} />
+            </motion.a>
+            <motion.a 
+              href="#contact"
+              onMouseMove={(e) => handleMagneticMove(e, setCtaPos2)}
+              onMouseLeave={() => handleMagneticLeave(setCtaPos2)}
+              animate={{ x: ctaPos2.x, y: ctaPos2.y }}
+              className="px-8 py-3.5 border border-ai-border hover:border-ai-text-secondary/50 text-ai-text font-semibold rounded-full bg-ai-card/30 hover:bg-ai-card flex items-center gap-4 transition-colors duration-300"
+            >
+              Start a conversation <MessageSquare size={14} className="text-ai-cyan" />
+            </motion.a>
+          </motion.div>
         </div>
       </div>
+
+      {/* Bottom Metrics Bar */}
+      <div className="relative z-10 w-full grid grid-cols-2 md:grid-cols-4 border-t border-ai-border/40 pt-6 mt-8">
+        {stats.map((stat, idx) => (
+          <motion.div 
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 + idx * 0.1 }}
+            className="p-4 pl-0 border-r border-ai-border/30 last:border-0 odd:border-r md:even:border-r"
+          >
+            <strong className="block text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ai-text">
+              <Counter target={stat.value} suffix={stat.suffix} />
+            </strong>
+            <span className="block mt-2 text-xs font-mono uppercase tracking-wider text-ai-text-secondary">
+              {stat.label}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Scroll indicator Cue */}
+      <a 
+        href="#about"
+        className="absolute right-6 sm:right-12 bottom-6 flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-ai-text-secondary hover:text-ai-cyan duration-300 transform origin-right rotate-90 translate-x-[45px] hover:translate-x-[40px]"
+      >
+        Scroll to explore <span className="w-12 h-[1px] bg-ai-text-secondary hover:bg-ai-cyan" />
+      </a>
     </section>
   )
 }

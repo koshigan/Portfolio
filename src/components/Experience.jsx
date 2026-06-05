@@ -1,131 +1,147 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+import { Briefcase, Award } from 'lucide-react'
 
 export default function Experience() {
   const experiences = [
     {
-      role: 'Senior Developer',
-      company: 'Tech Company Inc.',
-      period: '2023 - Present',
-      description: 'Led development of core platform features, mentored junior developers, and improved system performance by 40%.',
-      achievements: [
-        'Architected microservices reducing API response time by 40%',
-        'Mentored 3 junior developers on best practices',
-        'Led migration of legacy codebase to React'
-      ]
+      year: '2025',
+      role: 'Full Stack Developer Intern',
+      company: 'RevinTech',
+      description: 'Built responsive interfaces, integrated backend rest services, collaborated closely across cross-functional requirements, and learned professional CI/CD deployment routines.',
+      tag: 'Internship'
     },
     {
-      role: 'Full Stack Developer',
-      company: 'StartUp XYZ',
-      period: '2021 - 2023',
-      description: 'Built and maintained web applications for SaaS platform serving 10,000+ users.',
-      achievements: [
-        'Developed real-time dashboard with React and WebSockets',
-        'Implemented automated testing improving code coverage to 85%',
-        'Optimized database queries reducing load times by 50%'
-      ]
+      year: 'Ongoing',
+      role: 'Independent Product Builder',
+      company: 'Personal Laboratory',
+      description: 'Architecting and launching complete projects linking user interfaces, network databases, IoT hardware, and custom NLP models to refine full-system building skills.',
+      tag: 'Projects'
     },
     {
-      role: 'Junior Developer',
-      company: 'Web Solutions Ltd.',
-      period: '2020 - 2021',
-      description: 'Started career building responsive websites and fixing bugs in production systems.',
-      achievements: [
-        'Built 15+ responsive websites for clients',
-        'Fixed critical bugs in customer-facing applications',
-        'Learned Git, React, and Node.js best practices'
-      ]
+      year: 'Current',
+      role: 'Electronics & Communication Engineering',
+      company: 'University Program',
+      description: 'Acquiring deep foundations in circuit logic, signal communications, system processing protocols, microcontrollers, and low-level firmware engineering.',
+      tag: 'Education'
+    }
+  ]
+
+  const certifications = [
+    {
+      title: 'AWS Certified Cloud Practitioner',
+      issuer: 'Amazon Web Services',
+      date: '2025',
+      desc: 'Foundational cloud architectural principles, security practices, and infrastructure billing configurations.'
+    },
+    {
+      title: 'React Developer Certification',
+      issuer: 'freeCodeCamp Developer Path',
+      date: '2024',
+      desc: 'Complete React components structure, conditional rendering state loops, hooks integration, and ES6 specs.'
+    },
+    {
+      title: 'IoT & Telemetry Node Configurations',
+      issuer: 'Technical Academy Partner',
+      date: '2024',
+      desc: 'Embedded system setups linking ESP32 boards, microcontrollers, sensor nodes, and MQTT message routing.'
     }
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-ai-bg to-ai-bg-secondary">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-ai-text mb-16 text-center">
-          Professional <span className="text-ai-cyan">Experience</span>
-        </h2>
+    <section 
+      id="experience" 
+      className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 border-t border-ai-border bg-ai-bg overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Section Head */}
+        <div className="grid md:grid-cols-12 gap-6 mb-20">
+          <div className="md:col-span-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-ai-cyan block mt-1">
+              04 / Experience
+            </span>
+          </div>
+          <div className="md:col-span-9">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-ai-text">
+              Learning through<br />ownership and action.
+            </h2>
+          </div>
+        </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-ai-cyan to-ai-purple"></div>
-
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
-              <div key={idx} className={`flex ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-stretch`}>
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="glass-card hover-lift p-6 h-full bg-ai-card border border-ai-border">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <h3 className="text-2xl font-bold text-ai-text">{exp.role}</h3>
-                        <p className="text-ai-cyan font-semibold">{exp.company}</p>
-                      </div>
-                      <span className="px-3 py-1 bg-ai-cyan/10 text-ai-cyan text-sm font-semibold rounded-full whitespace-nowrap">
-                        {exp.period}
-                      </span>
-                    </div>
-
-                    <p className="text-ai-text-secondary mb-4 leading-relaxed">{exp.description}</p>
-
-                    {/* Achievements */}
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, achIdx) => (
-                        <li key={achIdx} className="flex gap-3">
-                          <span className="text-ai-green font-bold flex-shrink-0">✓</span>
-                          <span className="text-ai-text-secondary">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Timeline dot */}
-                <div className="hidden md:flex flex-col items-center">
-                  <div className="w-4 h-4 bg-ai-cyan rounded-full border-4 border-ai-bg shadow-lg z-10 relative"></div>
-                  <div className="w-1 h-16 bg-gradient-to-b from-ai-cyan to-transparent"></div>
-                </div>
-
-                {/* Mobile timeline indicator */}
-                <div className="md:hidden flex-1">
-                  <div className="absolute left-4 top-0 w-1 h-full bg-gradient-to-b from-ai-cyan to-ai-purple"></div>
-                  <div className="w-4 h-4 bg-ai-cyan rounded-full border-4 border-ai-bg absolute left-2 top-4"></div>
-                </div>
+        {/* Experience Timeline Rows */}
+        <div className="border-t border-ai-border/80">
+          {experiences.map((exp, idx) => (
+            <motion.article 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: idx * 0.1 }}
+              className="grid md:grid-cols-12 gap-6 py-10 border-b border-ai-border/80 items-start group relative hover:bg-ai-card/5 transition-colors duration-300 px-4 -mx-4 rounded-xl"
+            >
+              <div className="md:col-span-2 text-xs font-mono uppercase tracking-widest text-ai-cyan pt-1">
+                {exp.year}
               </div>
+              <div className="md:col-span-7">
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ai-text font-sora leading-tight mb-2">
+                  {exp.role}
+                </h3>
+                <p className="text-xs font-mono text-ai-text-secondary uppercase tracking-widest mb-3">
+                  {exp.company}
+                </p>
+                <p className="text-sm text-ai-text-secondary leading-relaxed max-w-3xl">
+                  {exp.description}
+                </p>
+              </div>
+              <div className="md:col-span-3 flex md:justify-end pt-1">
+                <span className="inline-block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary border border-ai-border/80 px-3 py-1 rounded-full bg-ai-card/30">
+                  {exp.tag}
+                </span>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* Certifications block */}
+        <div className="mt-32">
+          <h3 className="text-2xl font-bold tracking-tight text-ai-text mb-8 font-sora">
+            Certifications & Credentials
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="studio-card p-6 rounded-2xl border border-ai-border bg-ai-card/30 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="p-2 bg-ai-purple/10 rounded-lg text-ai-purple">
+                      <Award size={18} />
+                    </div>
+                    <span className="text-[10px] font-mono text-ai-text-secondary uppercase">
+                      {cert.date}
+                    </span>
+                  </div>
+                  <h4 className="text-base font-semibold tracking-tight text-ai-text mb-1 font-sora">
+                    {cert.title}
+                  </h4>
+                  <span className="block text-xs font-mono text-ai-cyan mb-3">
+                    {cert.issuer}
+                  </span>
+                  <p className="text-xs text-ai-text-secondary leading-relaxed">
+                    {cert.desc}
+                  </p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Education */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-ai-text mb-8">Education</h3>
-          <div className="glass-card-dark p-8 bg-ai-card border border-ai-border">
-            <div className="flex justify-between items-start mb-2">
-              <div>
-                <h4 className="text-xl font-bold text-ai-text">Bachelor of Science in Computer Science</h4>
-                <p className="text-ai-cyan font-semibold">University Name</p>
-              </div>
-              <span className="px-3 py-1 bg-ai-green/10 text-ai-green text-sm font-semibold rounded-full">
-                2016 - 2020
-              </span>
-            </div>
-            <p className="text-ai-text-secondary">CGPA: 3.8/4.0 • President of Coding Club</p>
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-8">
-          <h3 className="text-2xl font-bold text-ai-text mb-8">Certifications</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="glass-card p-6 border-l-4 border-ai-cyan bg-ai-card border border-ai-border">
-              <h4 className="font-bold text-ai-text mb-1">AWS Solutions Architect</h4>
-              <p className="text-sm text-ai-text-secondary">AWS • 2023</p>
-            </div>
-            <div className="glass-card p-6 border-l-4 border-ai-green bg-ai-card border border-ai-border">
-              <h4 className="font-bold text-ai-text mb-1">React Developer Certification</h4>
-              <p className="text-sm text-ai-text-secondary">freeCodeCamp • 2022</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

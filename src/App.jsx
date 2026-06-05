@@ -1,24 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
-import Projects from './components/Projects'
+import DeveloperOS from './components/DeveloperOS'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
+const ThreeProjects = lazy(() => import('./components/ThreeProjects'))
+
 function App() {
   const [theme, setTheme] = useState('dark')
-  const [githubProjects, setGithubProjects] = useState([])
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 })
 
   useEffect(() => {
-    // Load theme from localStorage
+    // Hide the pre-render HTML loader with a fade
+    const loader = document.querySelector('.loader')
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add('done')
+      }, 550)
+    }
+
+    // Load theme from localStorage (defaulting to dark)
     const savedTheme = localStorage.getItem('theme') || 'dark'
     setTheme(savedTheme)
 
-    // Fetch GitHub projects
-    fetchGitHubProjects()
+    // Mouse movement tracker for ambient glow spot
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
   }, [])
 
   const toggleTheme = () => {
@@ -27,33 +43,29 @@ function App() {
     localStorage.setItem('theme', newTheme)
   }
 
-  const fetchGitHubProjects = async () => {
-    try {
-      const username = 'koshigan' // Update this with your GitHub username
-      const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`)
-      const repos = await response.json()
-      
-      const filtered = repos
-        .filter(repo => !repo.fork)
-        .sort((a, b) => b.stargazers_count - a.stargazers_count)
-        .slice(0, 6)
-      
-      setGithubProjects(filtered)
-      console.log('📦 GitHub Projects Fetched:', filtered.length)
-    } catch (error) {
-      console.error('Error fetching GitHub projects:', error)
-    }
-  }
-
   return (
-    <div className={theme === 'dark' ? 'dark' : ''}>
+    <div className={`min-h-screen text-ai-text font-inter antialiased ${theme === 'dark' ? 'dark bg-ai-bg' : 'bg-gray-50 text-gray-900'}`}>
+      {/* Background visual glow spot */}
+      <div 
+        className="cursor-glow hidden md:block" 
+        style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} 
+        aria-hidden="true" 
+      />
+      
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects githubProjects={githubProjects} />
-      <Experience />
-      <Contact />
+      <main className="relative z-10">
+        <Hero />
+        <About />
+        <Suspense fallback={
+          <div className="py-32 text-center text-ai-text-secondary text-sm font-mono">Loading projects…</div>
+        }>
+          <ThreeProjects />
+        </Suspense>
+        <Skills />
+        <DeveloperOS />
+        <Experience />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

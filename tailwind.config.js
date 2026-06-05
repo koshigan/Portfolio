@@ -7,17 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Dark AI / Developer OS Theme
-        'ai-bg': '#0A0A0F',           // Primary background
-        'ai-bg-secondary': '#12121A', // Secondary background
-        'ai-card': '#181825',         // Card background
-        'ai-text': '#F5F5F7',         // Primary text
-        'ai-text-secondary': '#A1A1AA', // Secondary text
+        // Dark Studio / Developer OS Theme
+        'ai-bg': '#0A0A0F',           // Primary deep black background
+        'ai-bg-secondary': '#0E0E14', // Secondary very dark background
+        'ai-card': '#14141D',         // Soft dark cards background
+        'ai-text': '#F8F8F8',         // Primary white typography
+        'ai-text-secondary': '#A1A1AA', // Muted gray text
         'ai-purple': '#8B5CF6',       // Accent purple
         'ai-blue': '#3B82F6',         // Accent blue
         'ai-cyan': '#06B6D4',         // Accent cyan
         'ai-green': '#22C55E',        // Success green
-        'ai-border': '#27272A',       // Borders
+        'ai-border': '#22222E',       // Borders for cards
         // Fallback HR colors (kept for compatibility)
         'hr-navy': '#1a3a52',
         'hr-navy-light': '#2d5a7b',

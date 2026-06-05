@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { FaEnvelope, FaLinkedin, FaGithub, FaPhone, FaPaperPlane } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Mail, FileText, Send, CheckCircle2 } from 'lucide-react'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,205 +10,216 @@ export default function Contact() {
     subject: '',
     message: ''
   })
+  const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! I\'ll get back to you soon.')
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    console.log('Sending message to koshigan20@gmail.com:', formData)
+    setSubmitted(true)
+    setTimeout(() => {
+      setSubmitted(false)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    }, 3000)
   }
 
-  const contactMethods = [
-    {
-      icon: FaEnvelope,
-      label: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com'
-    },
-    {
-      icon: FaLinkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/yourprofile',
-      link: 'https://linkedin.com/in/yourprofile'
-    },
-    {
-      icon: FaGithub,
-      label: 'GitHub',
-      value: 'github.com/yourprofile',
-      link: 'https://github.com/yourprofile'
-    }
-  ]
-
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-ai-bg">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-ai-text mb-4 text-center">
-          Get In <span className="text-ai-cyan">Touch</span>
+    <section 
+      id="contact" 
+      className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 border-t border-ai-border bg-ai-bg overflow-hidden flex flex-col justify-center"
+    >
+      {/* Background visual blurred orb */}
+      <div className="absolute right-[-10%] bottom-[-20%] w-[50vw] h-[50vw] bg-gradient-to-tr from-ai-purple/10 to-ai-cyan/5 rounded-full blur-[100px] pointer-events-none z-0" />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        
+        {/* Section Index */}
+        <span className="text-xs font-mono uppercase tracking-widest text-ai-cyan block mb-6">
+          05 / Contact
+        </span>
+
+        {/* Studio Agency Headline */}
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95] text-ai-text max-w-4xl mb-12">
+          Have an ambitious idea?<br />
+          <em className="not-italic bg-gradient-to-r from-ai-purple via-ai-blue to-ai-cyan bg-clip-text text-transparent">
+            Let's build it.
+          </em>
         </h2>
-        <p className="text-center text-ai-text-secondary text-lg mb-16 max-w-2xl mx-auto">
-          I'm always interested in hearing about new opportunities and projects. Feel free to reach out!
-        </p>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {contactMethods.map((method, idx) => {
-            const Icon = method.icon
-            return (
-              <a
-                key={idx}
-                href={method.link}
-                className={`glass-card hover-lift p-6 text-center group border-t-4 border-ai-cyan bg-ai-card border border-ai-border`}
+        {/* Layout Grid */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mt-16">
+          
+          {/* Left: Contact Info & CTA links */}
+          <div className="lg:col-span-5 space-y-8">
+            <p className="text-base sm:text-lg text-ai-text-secondary leading-relaxed max-w-lg">
+              I am open to internships, graduate roles, collaborations, and conversations with teams building meaningful, high-performance systems.
+            </p>
+
+            {/* Quick Status Availability Badge */}
+            <div className="studio-card p-5 rounded-2xl border border-ai-border bg-ai-card/30 flex items-start gap-4">
+              <span className="relative flex h-2 w-2 mt-1.5 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <div>
+                <span className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary mb-1">
+                  Availability status
+                </span>
+                <p className="text-xs text-ai-text-secondary leading-relaxed">
+                  Active in India standard time. Seeking engineering internships and product builder opportunities.
+                </p>
+              </div>
+            </div>
+
+            {/* Links Block */}
+            <div className="flex flex-col gap-4">
+              <a 
+                href="mailto:koshigan20@gmail.com" 
+                className="flex items-center gap-4 text-sm font-semibold uppercase tracking-wider text-ai-text hover:text-ai-cyan transition-colors"
               >
-                <div className={`text-5xl text-ai-cyan mb-4 group-hover:scale-110 transition-transform`}>
-                  <Icon />
-                </div>
-                <h3 className="text-xl font-bold text-ai-text mb-2">{method.label}</h3>
-                <p className="text-ai-text-secondary break-all">{method.value}</p>
+                <Mail size={16} className="text-ai-cyan" /> koshigan20@gmail.com
               </a>
-            )
-          })}
-        </div>
-
-        {/* Contact Form */}
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-ai-text mb-6">Send Me a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-ai-text-secondary font-semibold mb-2">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-ai-border bg-ai-card text-ai-text focus:border-ai-cyan focus:outline-none transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-ai-text-secondary font-semibold mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-ai-border bg-ai-card text-ai-text focus:border-ai-cyan focus:outline-none transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-ai-text-secondary font-semibold mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-ai-border bg-ai-card text-ai-text focus:border-ai-cyan focus:outline-none transition-colors"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-ai-text-secondary font-semibold mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="5"
-                  className="w-full px-4 py-3 rounded-lg border border-ai-border bg-ai-card text-ai-text focus:border-ai-cyan focus:outline-none transition-colors resize-none"
-                  placeholder="Your message..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-ai-cyan text-ai-bg rounded-lg hover:bg-ai-blue transition-colors font-semibold flex items-center justify-center gap-2 group"
+              <a 
+                href="#" 
+                download
+                className="flex items-center gap-4 text-sm font-semibold uppercase tracking-wider text-ai-text hover:text-ai-cyan transition-colors"
               >
-                <FaPaperPlane className="group-hover:translate-x-1 transition-transform" />
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="glass-card-dark p-8 rounded-xl bg-ai-card border border-ai-border">
-              <h3 className="text-2xl font-bold text-ai-text mb-6">Quick Info</h3>
-              
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-ai-cyan/10 flex items-center justify-center flex-shrink-0 border border-ai-cyan/30">
-                    <FaPhone className="text-ai-cyan text-lg" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-ai-text">Phone</p>
-                    <p className="text-ai-text-secondary">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-ai-green/10 flex items-center justify-center flex-shrink-0 border border-ai-green/30">
-                    <FaEnvelope className="text-ai-green text-lg" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-ai-text">Email Response</p>
-                    <p className="text-ai-text-secondary">Usually within 24 hours</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-ai-purple/10 flex items-center justify-center flex-shrink-0 border border-ai-purple/30">
-                    <span className="text-ai-purple text-lg font-bold">📍</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-ai-text">Location</p>
-                    <p className="text-ai-text-secondary">Your City, Country</p>
-                  </div>
-                </div>
-              </div>
+                <FileText size={16} className="text-ai-purple" /> Download Resume
+              </a>
             </div>
 
-            {/* Availability */}
-            <div className="glass-card p-6 border-l-4 border-ai-cyan bg-ai-card border border-ai-border">
-              <p className="text-sm text-ai-text-secondary mb-3">
-                <span className="inline-block w-3 h-3 bg-ai-green rounded-full mr-2"></span>
-                <span className="font-semibold text-ai-text">Available for:</span>
-              </p>
-              <ul className="space-y-2 text-ai-text-secondary">
-                <li>✓ Full-time positions</li>
-                <li>✓ Freelance projects</li>
-                <li>✓ Consulting work</li>
-                <li>✓ Open source contributions</li>
-              </ul>
+            {/* Social handles */}
+            <div className="flex gap-6 pt-4 border-t border-ai-border/40">
+              <a 
+                href="https://github.com/koshigan" 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-xs font-mono text-ai-text-secondary hover:text-ai-text flex items-center gap-1.5 transition-colors"
+              >
+                <FaGithub size={14} /> GitHub ↗
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/koshigan26" 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-xs font-mono text-ai-text-secondary hover:text-ai-text flex items-center gap-1.5 transition-colors"
+              >
+                <FaLinkedin size={14} /> LinkedIn ↗
+              </a>
             </div>
           </div>
+
+          {/* Right: Contact Form */}
+          <div className="lg:col-span-7">
+            <div className="studio-card p-8 sm:p-10 rounded-3xl border border-ai-border bg-ai-card/30 relative">
+              <AnimatePresence mode="wait">
+                {!submitted ? (
+                  <motion.form 
+                    key="form"
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full bg-transparent border-b border-ai-border focus:border-ai-cyan outline-none text-ai-text py-2 text-sm transition-colors duration-300"
+                          placeholder="Koshigan"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary">
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="w-full bg-transparent border-b border-ai-border focus:border-ai-cyan outline-none text-ai-text py-2 text-sm transition-colors duration-300"
+                          placeholder="email@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="subject" className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary">
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-transparent border-b border-ai-border focus:border-ai-cyan outline-none text-ai-text py-2 text-sm transition-colors duration-300"
+                        placeholder="Project Collaboration / Internship Inquiry"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={4}
+                        className="w-full bg-transparent border-b border-ai-border focus:border-ai-cyan outline-none text-ai-text py-2 text-sm transition-colors duration-300 resize-none"
+                        placeholder="Briefly describe your goals..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 px-6 bg-ai-text hover:bg-ai-cyan text-ai-bg font-semibold rounded-full flex items-center justify-center gap-3 transition-colors duration-300 shadow-xl"
+                    >
+                      Send Message <Send size={14} />
+                    </button>
+                  </motion.form>
+                ) : (
+                  <motion.div 
+                    key="success"
+                    className="flex flex-col items-center justify-center py-12 text-center"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <CheckCircle2 size={48} className="text-ai-cyan mb-4 animate-bounce" />
+                    <h3 className="text-2xl font-bold tracking-tight text-ai-text mb-2 font-sora">
+                      Message Sent!
+                    </h3>
+                    <p className="text-sm text-ai-text-secondary max-w-md">
+                      Thank you. I have logged your message and will check it at koshigan20@gmail.com shortly.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
   )

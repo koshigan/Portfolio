@@ -6,5 +6,16 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  build: {
+    chunkSizeWarningLimit: 1600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'three-vendor': ['three'],
+          'r3f-vendor': ['@react-three/fiber', '@react-three/drei'],
+        }
+      }
+    }
   }
 })

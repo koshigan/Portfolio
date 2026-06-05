@@ -1,540 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Professional Portfolio</title>
-    <meta name="description" content="Koshigan's premium AI-powered developer portfolio. ECE student & full-stack developer specializing in IoT, Web Development, and AI systems.">
-    
-    <!-- Google Fonts - Premium Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Three.js for 3D Effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- AOS - Animate On Scroll -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Koshigan is a full-stack developer and IoT engineer building intelligent digital products.">
+  <meta name="theme-color" content="#0A0A0F">
+  <title>Koshigan | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Instant CSS for Pre-mount Loader */
+    body {
+      background-color: #0A0A0F;
+      margin: 0;
+      color: #F8F8F8;
+      font-family: 'Sora', sans-serif;
+    }
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: #07070b;
+      display: grid;
+      place-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    .loader.done {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-mark {
+      font-weight: 700;
+      font-size: 5rem;
+      letter-spacing: -.1em;
+      text-align: center;
+    }
+    .loader-mark span {
+      color: #06B6D4;
+    }
+    .loader-line {
+      width: 160px;
+      height: 1px;
+      margin-top: 1rem;
+      background: #222;
+      overflow: hidden;
+    }
+    .loader-line i {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #8B5CF6, #3B82F6, #06B6D4);
+      animation: load 1.35s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes load {
+      from { transform: scaleX(0) }
+      to { transform: scaleX(1) }
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Background Particles -->
-    <div class="particle-bg"></div>
+  <!-- Pre-render instant loading screen -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-mark">K<span>.</span></div>
+    <div class="loader-line"><i></i></div>
+  </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         NAVIGATION BAR - STICKY PREMIUM NAV
-         ═══════════════════════════════════════════════════════════════ -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Koshigan<span class="gradient-text">.</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- Ambient noise background overlay -->
+  <div class="noise" aria-hidden="true"></div>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         HERO SECTION - AI COMMAND CENTER INTRO
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="home" class="hero section-spacing">
-        <div class="hero-content reveal">
-            <div class="hero-badge">
-                <i class="fas fa-brain"></i>
-                <span>AI Developer Command Center</span>
-            </div>
-            
-            <h1 class="hero-title">
-                Hi, I'm <span class="gradient-text">Koshigan</span>
-            </h1>
-            
-            <p class="hero-subtitle">
-                Full-Stack Developer | IoT Engineer | AI Enthusiast
-            </p>
-            
-            <p class="hero-desc">
-                Crafting intelligent solutions combining embedded systems, web technologies, and AI. 
-                Building the future, one line of code at a time. 🚀
-            </p>
-            
-            <div class="hero-stats">
-                <div class="stat-card glass-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Projects</div>
-                </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Dedication</div>
-                </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Learning</div>
-                </div>
-            </div>
-            
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-code"></i> View My Work
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-envelope"></i> Get In Touch
-                </a>
-                <a href="https://github.com/koshigan" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         ABOUT SECTION - PROFESSIONAL OVERVIEW
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="about" class="about section-spacing">
-        <div class="container">
-            <h2 class="section-title reveal">
-                <span>👤</span> About Me
-            </h2>
-            
-            <div class="about-content reveal">
-                <div class="about-text glass-card">
-                    <blockquote class="about-quote">
-                        <i class="fas fa-quote-left"></i> 
-                        "As long as I live, there are infinite chances."
-                    </blockquote>
-                    
-                    <p>
-                        I'm an Electronics and Communication Engineering student with a passion for building intelligent systems 
-                        that solve real-world problems through code and hardware integration.
-                    </p>
-                    
-                    <p>
-                        My expertise spans IoT systems, full-stack web development, and AI integration. I've developed voice assistants, 
-                        predictive monitoring systems, and scalable web applications that demonstrate my ability to think across 
-                        multiple technology domains.
-                    </p>
-                    
-                    <p>
-                        I'm driven by curiosity and the desire to create products that make a tangible difference. Every project 
-                        is an opportunity to learn, innovate, and push the boundaries of what's possible.
-                    </p>
-                </div>
-                
-                <div class="about-visual">
-                    <div class="profile-frame">
-                        <img src="assets/profile.jpg" alt="Koshigan - Developer" id="profile-img" 
-                             onerror="this.src='https://ui-avatars.com/api/?name=Koshigan&background=0d1117&color=00d9ff&size=400&bold=true'">
-                        <div class="profile-glow"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         SKILLS SECTION - INTERACTIVE PROFICIENCY DASHBOARD
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="skills" class="skills section-spacing">
-        <div class="container">
-            <h2 class="section-title reveal">
-                <span>🛠️</span> Skills & Technologies
-            </h2>
-            
-            <div class="skills-grid reveal">
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-code tag-icon"></i>
-                        <h3>Programming Languages</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-microchip tag-icon"></i>
-                        <h3>Embedded Systems</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ESP32</span>
-                        <span class="skill-tag">Arduino</span>
-                        <span class="skill-tag">IoT Sensors</span>
-                        <span class="skill-tag">MQTT</span>
-                        <span class="skill-tag">Real-time Systems</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-globe tag-icon"></i>
-                        <h3>Web Technologies</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Frontend</span>
-                        <span class="skill-tag">Backend</span>
-                        <span class="skill-tag">Responsive Design</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Databases</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-tools tag-icon"></i>
-                        <h3>Tools & Platforms</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git & GitHub</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Arduino IDE</span>
-                        <span class="skill-tag">Vercel</span>
-                        <span class="skill-tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-brain tag-icon"></i>
-                        <h3>AI & Machine Learning</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Speech Recognition</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Predictive Systems</span>
-                        <span class="skill-tag">Neural Networks</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card hover-card">
-                    <div class="skill-header">
-                        <i class="fas fa-chart-line tag-icon"></i>
-                        <h3>Expertise</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">System Design</span>
-                        <span class="skill-tag">Optimization</span>
-                        <span class="skill-tag">Testing</span>
-                        <span class="skill-tag">Documentation</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         PROJECTS SECTION - PREMIUM PROJECT SHOWCASE
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="projects" class="projects section-spacing">
-        <div class="container">
-            <h2 class="section-title reveal">
-                <span>📂</span> Featured Projects
-            </h2>
-            <p class="section-subtitle reveal">
-                Showcasing my best work and technical expertise
-            </p>
-            
-            <div class="projects-grid">
-                <!-- Main Featured Project -->
-                <div class="project-card featured main-project reveal glass-card">
-                    <div class="project-header">
-                        <div class="project-badge highlight-badge">
-                            <i class="fas fa-fire"></i> Featured
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link-btn" title="Live Demo">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="https://github.com/koshigan" class="project-link-btn" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <h3 class="project-title">🎤 Intelligent Voice Assistant</h3>
-                    <p class="project-desc">
-                        Advanced web-based voice assistant with multilingual support, real-time speech recognition, 
-                        and intelligent response generation. Deployed and accessible online for testing.
-                    </p>
-                    
-                    <ul class="project-features">
-                        <li><i class="fas fa-check-circle accent-icon"></i> Speech recognition & synthesis</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Multi-language support</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Real-time conversation handling</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Deployed & production-ready</li>
-                    </ul>
-                    
-                    <div class="tech-tags">
-                        <span>Web Speech API</span>
-                        <span>JavaScript</span>
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                    </div>
-                </div>
-
-                <!-- Secondary Featured Project -->
-                <div class="project-card featured secondary-project reveal glass-card">
-                    <div class="project-header">
-                        <div class="project-badge">
-                            <i class="fas fa-bolt"></i> IoT Project
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/koshigan" class="project-link-btn" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <h3 class="project-title">⚡ Predictive Cable Fault Detection</h3>
-                    <p class="project-desc">
-                        Real-time monitoring system for underground cables using IoT sensors. Predicts faults before failure 
-                        using sensor data analysis and machine learning algorithms.
-                    </p>
-                    
-                    <ul class="project-features">
-                        <li><i class="fas fa-check-circle accent-icon"></i> Multi-sensor integration</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Predictive analytics</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Real-time data processing</li>
-                    </ul>
-                    
-                    <div class="tech-tags">
-                        <span>ESP32</span>
-                        <span>IoT</span>
-                        <span>Sensors</span>
-                        <span>Embedded C</span>
-                    </div>
-                </div>
-
-                <!-- Standard Projects Grid -->
-                <div class="project-card reveal glass-card">
-                    <div class="project-header">
-                        <div class="project-badge">
-                            <i class="fas fa-graduation-cap"></i> Full Stack
-                        </div>
-                    </div>
-                    
-                    <h3 class="project-title">📊 Attendance Management System</h3>
-                    <p class="project-desc">
-                        Web-based attendance tracking system with intuitive UI for managing student and staff records efficiently.
-                    </p>
-                    
-                    <ul class="project-features">
-                        <li><i class="fas fa-check-circle accent-icon"></i> Add/edit/delete records</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Modern interface</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Data persistence</li>
-                    </ul>
-                    
-                    <div class="tech-tags">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-
-                <div class="project-card reveal glass-card">
-                    <div class="project-header">
-                        <div class="project-badge">
-                            <i class="fas fa-database"></i> Backend
-                        </div>
-                    </div>
-                    
-                    <h3 class="project-title">📚 Library Management System</h3>
-                    <p class="project-desc">
-                        Comprehensive library system managing books, users, transactions, and inventory with database integration.
-                    </p>
-                    
-                    <ul class="project-features">
-                        <li><i class="fas fa-check-circle accent-icon"></i> Book issue/return</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> User management</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Advanced queries</li>
-                    </ul>
-                    
-                    <div class="tech-tags">
-                        <span>Java</span>
-                        <span>JDBC</span>
-                        <span>MySQL</span>
-                    </div>
-                </div>
-
-                <div class="project-card reveal glass-card">
-                    <div class="project-header">
-                        <div class="project-badge">
-                            <i class="fas fa-user"></i> Frontend
-                        </div>
-                    </div>
-                    
-                    <h3 class="project-title">🎨 Portfolio Website</h3>
-                    <p class="project-desc">
-                        Personal portfolio showcasing projects, skills, and experience with premium design and interactive features.
-                    </p>
-                    
-                    <ul class="project-features">
-                        <li><i class="fas fa-check-circle accent-icon"></i> Responsive design</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Dark/light theme</li>
-                        <li><i class="fas fa-check-circle accent-icon"></i> Smooth animations</li>
-                    </ul>
-                    
-                    <div class="tech-tags">
-                        <span>React</span>
-                        <span>Tailwind CSS</span>
-                        <span>Framer Motion</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         EXPERIENCE SECTION - PROFESSIONAL TIMELINE
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="experience" class="experience section-spacing">
-        <div class="container">
-            <h2 class="section-title reveal">
-                <span>📜</span> Experience & Achievements
-            </h2>
-            
-            <div class="timeline reveal">
-                <div class="timeline-item glass-card hover-card">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">
-                            <i class="fas fa-calendar-alt"></i> June - July 2025
-                        </div>
-                        <h3>Full Stack Developer Intern</h3>
-                        <h4 class="company">RevinTech</h4>
-                        <p class="internship-desc">
-                            Worked on real-world web applications and learned industry-standard development practices.
-                        </p>
-                        <ul>
-                            <li><i class="fas fa-angle-right"></i> Developed responsive web interfaces</li>
-                            <li><i class="fas fa-angle-right"></i> Integrated backend APIs</li>
-                            <li><i class="fas fa-angle-right"></i> Collaborated with cross-functional teams</li>
-                            <li><i class="fas fa-angle-right"></i> Learned deployment practices</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item glass-card hover-card">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">
-                            <i class="fas fa-calendar-alt"></i> Ongoing
-                        </div>
-                        <h3>Independent Projects</h3>
-                        <h4 class="company">Self-Directed Learning</h4>
-                        <p class="internship-desc">
-                            Continuously building and deploying projects to enhance skills in emerging technologies.
-                        </p>
-                        <ul>
-                            <li><i class="fas fa-angle-right"></i> Voice assistant development</li>
-                            <li><i class="fas fa-angle-right"></i> IoT systems implementation</li>
-                            <li><i class="fas fa-angle-right"></i> Full-stack applications</li>
-                            <li><i class="fas fa-angle-right"></i> Open source contributions</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         CONTACT SECTION - MODERN CONTACT METHODS
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="contact" class="contact section-spacing">
-        <div class="container">
-            <h2 class="section-title text-center reveal">
-                <span>📞</span> Let's Connect & Collaborate
-            </h2>
-            <p class="section-subtitle text-center reveal">
-                Whether you have a project in mind or just want to discuss tech, I'd love to hear from you!
-            </p>
-            
-            <div class="contact-methods">
-                <a href="mailto:koshigan20@gmail.com" class="contact-card glass-card hover-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <span class="contact-title">Email</span>
-                    <p>koshigan20@gmail.com</p>
-                </a>
-                
-                <a href="https://www.linkedin.com/in/koshigan26" target="_blank" rel="noopener noreferrer" class="contact-card glass-card hover-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <span class="contact-title">LinkedIn</span>
-                    <p>Koshigan</p>
-                </a>
-
-                <a href="https://github.com/koshigan" target="_blank" rel="noopener noreferrer" class="contact-card glass-card hover-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <span class="contact-title">GitHub</span>
-                    <p>koshigan</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         FOOTER - PREMIUM FOOTER
-         ═══════════════════════════════════════════════════════════════ -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-tagline">
-                    Built with <span class="heart">❤️</span> and cutting-edge web technologies
-                </p>
-                <div class="footer-links">
-                    <a href="https://github.com/koshigan" target="_blank" rel="noopener noreferrer" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/koshigan26" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:koshigan20@gmail.com" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                <p class="footer-credit">
-                    © 2025 Koshigan. All rights reserved. | Crafted with innovation 🚀
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         SCROLL TO TOP BUTTON
-         ═══════════════════════════════════════════════════════════════ -->
-    <button id="scroll-top" class="scroll-top-btn" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script type="module" src="/script.js"></script>
+  <!-- Mount point for React App -->
+  <div id="root"></div>
+  
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

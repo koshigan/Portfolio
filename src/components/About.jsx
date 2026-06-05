@@ -1,78 +1,153 @@
 import React from 'react'
-import { FaQuoteLeft } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { ArrowUpRight, Award, GraduationCap, MapPin, Sparkles } from 'lucide-react'
 
 export default function About() {
+  const timeline = [
+    {
+      year: '2024',
+      title: 'Started building for the web',
+      description: 'Turned programming fundamentals into responsive interfaces and practical, database-backed applications.',
+    },
+    {
+      year: '2025',
+      title: 'Full-stack developer internship',
+      description: 'Worked with real product requirements, API integration, Git-based collaboration, and cloud deployment workflows.',
+    },
+    {
+      year: 'Now',
+      title: 'Engineering intelligent products',
+      description: 'Combining full-stack development, IoT hardware, and machine learning to build cohesive systems with measurable value.',
+    },
+    {
+      year: 'Next',
+      title: 'Product engineering at scale',
+      description: 'Growing toward high-impact engineering teams where craft, performance, and ambition matter.',
+    },
+  ]
+
+  const facts = [
+    { label: 'Academic Focus', value: 'ECE Student (Electronics & Communication)', icon: GraduationCap },
+    { label: 'Current Base', value: 'India', icon: MapPin },
+    { label: 'Core Philosophy', value: 'Solve the whole problem, not just one layer', icon: Sparkles },
+    { label: 'Design Theme', value: 'Minimalist luxury, performance first', icon: Award },
+  ]
+
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-ai-bg">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-ai-text mb-16 text-center">
-          About <span className="text-ai-cyan">Me</span>
-        </h2>
-
-        {/* Quote */}
-        <div className="glass-card-dark p-8 mb-12 border-l-4 border-ai-cyan max-w-3xl mx-auto bg-ai-card border border-ai-border">
-          <div className="flex gap-4">
-            <FaQuoteLeft className="text-ai-cyan text-3xl flex-shrink-0 mt-1" />
-            <blockquote className="text-lg text-ai-text-secondary italic">
-              "Code is poetry, and every project is a masterpiece waiting to happen.
-              I build products that inspire, solve real problems, and push the boundaries of what's possible."
-            </blockquote>
+    <section 
+      id="about" 
+      className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 border-t border-ai-border bg-ai-bg overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Section Head */}
+        <div className="grid md:grid-cols-12 gap-6 mb-20">
+          <div className="md:col-span-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-ai-cyan block mt-1">
+              01 / Profile
+            </span>
+          </div>
+          <div className="md:col-span-9">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-ai-text"
+            >
+              Curiosity, translated<br />into working systems.
+            </motion.h2>
           </div>
         </div>
 
-        {/* Bio */}
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-4">
-            <p className="text-lg text-ai-text-secondary leading-relaxed">
-              I'm a full-stack developer and AI enthusiast passionate about building next-generation web applications.
-              With expertise in modern technologies and a deep understanding of developer experience, I create tools that matter.
-            </p>
-            
-            <p className="text-lg text-ai-text-secondary leading-relaxed">
-              My tech stack includes React, Node.js, TypeScript, and AI/ML integration.
-              I specialize in building scalable systems, designing elegant APIs, and crafting beautiful user interfaces.
-            </p>
+        {/* About Body Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          {/* Left Columns - Bio Info */}
+          <div className="lg:col-span-5 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <p className="text-2xl sm:text-3xl font-medium tracking-tight text-ai-text leading-tight font-sora">
+                I am an Electronics and Communication Engineering student who thinks like a product engineer.
+              </p>
+              <p className="text-base text-ai-text-secondary leading-relaxed">
+                I enjoy moving between interface design, backend logic, embedded hardware, and AI/ML models to solve the whole problem, not only one isolated layer of it. I aim to create things that are reliable, highly optimized, and satisfying to use.
+              </p>
+              
+              <a 
+                href="#contact" 
+                className="inline-flex items-center gap-4 text-xs font-semibold uppercase tracking-wider text-ai-text border-b border-ai-border pb-1 hover:border-ai-cyan hover:text-ai-cyan transition-colors"
+              >
+                More about how I work <ArrowUpRight size={14} />
+              </a>
+            </motion.div>
 
-            <p className="text-lg text-ai-text-secondary leading-relaxed">
-              When I'm not coding, I explore emerging technologies, contribute to open-source, and share knowledge with the community.
-              Always excited about new challenges and innovations.
-            </p>
-
-            {/* Quick Facts */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="font-semibold text-ai-cyan mb-1">Based In</div>
-                <p className="text-ai-text-secondary">Your City, Country</p>
-              </div>
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="font-semibold text-ai-cyan mb-1">Experience</div>
-                <p className="text-ai-text-secondary">5+ Years</p>
-              </div>
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="font-semibold text-ai-cyan mb-1">Available For</div>
-                <p className="text-ai-text-secondary">Freelance & Full-time</p>
-              </div>
-              <div className="glass-card p-4 bg-ai-card border border-ai-border">
-                <div className="font-semibold text-ai-cyan mb-1">Favorite Stack</div>
-                <p className="text-ai-text-secondary">React & Node.js</p>
-              </div>
+            {/* Quick Facts Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+              {facts.map((fact, idx) => {
+                const Icon = fact.icon
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="studio-card p-5 rounded-xl border border-ai-border/40 bg-ai-card/30 flex gap-4 items-start"
+                  >
+                    <div className="p-2 bg-ai-cyan/10 rounded-lg text-ai-cyan flex-shrink-0 mt-0.5">
+                      <Icon size={16} />
+                    </div>
+                    <div>
+                      <span className="block text-[10px] font-mono uppercase tracking-wider text-ai-text-secondary mb-1">
+                        {fact.label}
+                      </span>
+                      <p className="text-sm font-medium text-ai-text leading-snug">
+                        {fact.value}
+                      </p>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
 
-          {/* Profile Image */}
-          <div className="flex justify-center">
-            <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-lg glow-teal">
-              <img 
-                src="/assets/profile.jpg" 
-                alt="Profile" 
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/256x256?text=Profile&bg=6B8E6F&fg=ffffff'
-                }}
-              />
+          {/* Right Columns - Story Timeline */}
+          <div className="lg:col-span-7">
+            <div className="relative border-l border-ai-border/80 ml-4 pl-8 space-y-12">
+              {timeline.map((item, idx) => (
+                <motion.article 
+                  key={idx}
+                  initial={{ opacity: 0, x: 25 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.65, delay: idx * 0.12 }}
+                  className="relative"
+                >
+                  {/* Timeline bullet indicator */}
+                  <span className="absolute left-[-41px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-ai-bg">
+                    <span className="h-2 w-2 rounded-full bg-ai-cyan ring-4 ring-ai-cyan/25 animate-pulse" />
+                  </span>
+
+                  <span className="inline-block text-[10px] font-mono tracking-widest text-ai-cyan uppercase mb-2">
+                    {item.year}
+                  </span>
+                  <h3 className="text-xl font-semibold tracking-tight text-ai-text mb-2 font-sora">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-ai-text-secondary leading-relaxed max-w-2xl">
+                    {item.description}
+                  </p>
+                </motion.article>
+              ))}
             </div>
           </div>
         </div>
+
       </div>
     </section>
   )

@@ -1,115 +1,58 @@
 import React, { useState, useEffect } from 'react'
-import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUp } from 'lucide-react'
 
 export default function Footer() {
   const [showScroll, setShowScroll] = useState(false)
 
-  const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false)
-    }
-  }
-
   useEffect(() => {
+    const checkScrollTop = () => {
+      setShowScroll(window.scrollY > 400)
+    }
     window.addEventListener('scroll', checkScrollTop)
     return () => window.removeEventListener('scroll', checkScrollTop)
-  }, [showScroll])
+  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const currentYear = new Date().getFullYear()
-
-  const socialLinks = [
-    { icon: FaGithub, url: 'https://github.com/yourprofile', label: 'GitHub' },
-    { icon: FaLinkedin, url: 'https://linkedin.com/in/yourprofile', label: 'LinkedIn' },
-    { icon: FaTwitter, url: 'https://twitter.com/yourprofile', label: 'Twitter' }
-  ]
-
   return (
-    <footer className="bg-ai-bg-secondary text-ai-text pt-16 pb-8 border-t border-ai-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer */}
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">
-              Your<span className="text-ai-cyan">Dev</span>
-            </h3>
-            <p className="text-ai-text-secondary text-sm leading-relaxed">
-              A passionate developer creating beautiful, functional web experiences.
-            </p>
-          </div>
+    <footer className="relative bg-ai-bg py-12 px-6 sm:px-8 lg:px-12 border-t border-ai-border/40">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-xs font-mono text-ai-text-secondary">
+        
+        {/* Brand */}
+        <a href="#home" className="text-sm font-bold tracking-tight text-ai-text flex items-center">
+          Koshigan<span className="text-ai-cyan">.</span>
+        </a>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="font-semibold mb-4 text-ai-cyan">Navigation</h4>
-            <ul className="space-y-2">
-              <li><a href="#about" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">About</a></li>
-              <li><a href="#skills" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Skills</a></li>
-              <li><a href="#projects" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Projects</a></li>
-              <li><a href="#experience" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Experience</a></li>
-            </ul>
-          </div>
+        {/* Location & Title */}
+        <span className="text-center sm:text-left">
+          Software Engineer · India
+        </span>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold mb-4 text-ai-purple">Resources</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Blog</a></li>
-              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Resume</a></li>
-              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Portfolio</a></li>
-              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Testimonials</a></li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="font-semibold mb-4 text-ai-blue">Follow Me</h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social, idx) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={idx}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-ai-card border border-ai-border hover:bg-ai-blue hover:border-ai-blue transition-colors flex items-center justify-center text-ai-text"
-                    aria-label={social.label}
-                  >
-                    <Icon size={18} />
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-ai-border my-8"></div>
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-ai-text-secondary text-sm">
-            © {currentYear} Your Name. All rights reserved. Built with <span className="text-ai-cyan">care</span> and React.
-          </p>
-
-          {/* Back to Top */}
-          {showScroll && (
-            <button
-              onClick={scrollToTop}
-              className="mt-4 md:mt-0 p-3 rounded-full bg-ai-purple hover:bg-ai-blue text-ai-text transition-colors flex items-center gap-2"
-              aria-label="Back to top"
-            >
-              <FaArrowUp size={18} />
-            </button>
-          )}
-        </div>
+        {/* Copyright */}
+        <span>
+          © 2026 · Built with React & Tailwind
+        </span>
       </div>
+
+      {/* Back to top dynamic button */}
+      <AnimatePresence>
+        {showScroll && (
+          <motion.button
+            key="scroll-btn"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            className="fixed right-6 bottom-6 sm:right-10 sm:bottom-10 z-40 p-3 bg-ai-card border border-ai-border hover:border-ai-cyan text-ai-text rounded-full shadow-2xl transition-colors duration-300"
+          >
+            <ArrowUp size={16} className="text-ai-cyan" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   )
 }
