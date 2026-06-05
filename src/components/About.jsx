@@ -3,19 +3,19 @@ import { FaQuoteLeft } from 'react-icons/fa'
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-ai-bg">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-hr-navy mb-16 text-center">
-          About <span className="text-hr-teal">Me</span>
+        <h2 className="text-4xl font-bold text-ai-text mb-16 text-center">
+          About <span className="text-ai-cyan">Me</span>
         </h2>
 
         {/* Quote */}
-        <div className="glass-card-dark p-8 mb-12 border-l-4 border-hr-teal max-w-3xl mx-auto">
+        <div className="glass-card-dark p-8 mb-12 border-l-4 border-ai-cyan max-w-3xl mx-auto bg-ai-card border border-ai-border">
           <div className="flex gap-4">
-            <FaQuoteLeft className="text-hr-teal text-3xl flex-shrink-0 mt-1" />
-            <blockquote className="text-lg text-hr-dark italic">
-              "I believe in writing clean, maintainable code that not only solves problems today but anticipates challenges tomorrow. 
-              Every project is an opportunity to learn, grow, and create something meaningful."
+            <FaQuoteLeft className="text-ai-cyan text-3xl flex-shrink-0 mt-1" />
+            <blockquote className="text-lg text-ai-text-secondary italic">
+              "Code is poetry, and every project is a masterpiece waiting to happen.
+              I build products that inspire, solve real problems, and push the boundaries of what's possible."
             </blockquote>
           </div>
         </div>
@@ -23,39 +23,38 @@ export default function About() {
         {/* Bio */}
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
-            <p className="text-lg text-hr-dark leading-relaxed">
-              I'm a passionate full-stack developer with a background in computer science and years of professional experience 
-              building web applications. My journey in tech has been driven by a curiosity to understand how things work and a 
-              commitment to continuous learning.
+            <p className="text-lg text-ai-text-secondary leading-relaxed">
+              I'm a full-stack developer and AI enthusiast passionate about building next-generation web applications.
+              With expertise in modern technologies and a deep understanding of developer experience, I create tools that matter.
             </p>
             
-            <p className="text-lg text-hr-dark leading-relaxed">
-              My expertise spans across modern web technologies including React, Node.js, Python, and database design. 
-              I excel at translating complex requirements into elegant solutions while maintaining code quality and performance.
+            <p className="text-lg text-ai-text-secondary leading-relaxed">
+              My tech stack includes React, Node.js, TypeScript, and AI/ML integration.
+              I specialize in building scalable systems, designing elegant APIs, and crafting beautiful user interfaces.
             </p>
 
-            <p className="text-lg text-hr-dark leading-relaxed">
-              When I'm not coding, you can find me contributing to open-source projects, writing technical blogs, or mentoring 
-              junior developers. I'm always excited about new challenges and opportunities to make a positive impact.
+            <p className="text-lg text-ai-text-secondary leading-relaxed">
+              When I'm not coding, I explore emerging technologies, contribute to open-source, and share knowledge with the community.
+              Always excited about new challenges and innovations.
             </p>
 
             {/* Quick Facts */}
             <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="glass-card p-4">
-                <div className="font-semibold text-hr-navy mb-1">Based In</div>
-                <p className="text-hr-dark">Your City, Country</p>
+              <div className="glass-card p-4 bg-ai-card border border-ai-border">
+                <div className="font-semibold text-ai-cyan mb-1">Based In</div>
+                <p className="text-ai-text-secondary">Your City, Country</p>
               </div>
-              <div className="glass-card p-4">
-                <div className="font-semibold text-hr-navy mb-1">Experience</div>
-                <p className="text-hr-dark">5+ Years</p>
+              <div className="glass-card p-4 bg-ai-card border border-ai-border">
+                <div className="font-semibold text-ai-cyan mb-1">Experience</div>
+                <p className="text-ai-text-secondary">5+ Years</p>
               </div>
-              <div className="glass-card p-4">
-                <div className="font-semibold text-hr-navy mb-1">Available For</div>
-                <p className="text-hr-dark">Freelance & Full-time</p>
+              <div className="glass-card p-4 bg-ai-card border border-ai-border">
+                <div className="font-semibold text-ai-cyan mb-1">Available For</div>
+                <p className="text-ai-text-secondary">Freelance & Full-time</p>
               </div>
-              <div className="glass-card p-4">
-                <div className="font-semibold text-hr-navy mb-1">Favorite Stack</div>
-                <p className="text-hr-dark">React & Node.js</p>
+              <div className="glass-card p-4 bg-ai-card border border-ai-border">
+                <div className="font-semibold text-ai-cyan mb-1">Favorite Stack</div>
+                <p className="text-ai-text-secondary">React & Node.js</p>
               </div>
             </div>
           </div>

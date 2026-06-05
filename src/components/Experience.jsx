@@ -38,41 +38,41 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-hr-gray">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-ai-bg to-ai-bg-secondary">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-hr-navy mb-16 text-center">
-          Professional <span className="text-hr-teal">Experience</span>
+        <h2 className="text-4xl font-bold text-ai-text mb-16 text-center">
+          Professional <span className="text-ai-cyan">Experience</span>
         </h2>
 
         {/* Timeline */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-hr-teal to-hr-green"></div>
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-ai-cyan to-ai-purple"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <div key={idx} className={`flex ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-stretch`}>
                 {/* Content */}
                 <div className="flex-1">
-                  <div className="glass-card hover-lift p-6 h-full">
+                  <div className="glass-card hover-lift p-6 h-full bg-ai-card border border-ai-border">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-2xl font-bold text-hr-navy">{exp.role}</h3>
-                        <p className="text-hr-teal font-semibold">{exp.company}</p>
+                        <h3 className="text-2xl font-bold text-ai-text">{exp.role}</h3>
+                        <p className="text-ai-cyan font-semibold">{exp.company}</p>
                       </div>
-                      <span className="px-3 py-1 bg-hr-teal/10 text-hr-teal text-sm font-semibold rounded-full whitespace-nowrap">
+                      <span className="px-3 py-1 bg-ai-cyan/10 text-ai-cyan text-sm font-semibold rounded-full whitespace-nowrap">
                         {exp.period}
                       </span>
                     </div>
 
-                    <p className="text-hr-dark mb-4 leading-relaxed">{exp.description}</p>
+                    <p className="text-ai-text-secondary mb-4 leading-relaxed">{exp.description}</p>
 
                     {/* Achievements */}
                     <ul className="space-y-2">
                       {exp.achievements.map((achievement, achIdx) => (
                         <li key={achIdx} className="flex gap-3">
-                          <span className="text-hr-green font-bold flex-shrink-0">✓</span>
-                          <span className="text-hr-dark">{achievement}</span>
+                          <span className="text-ai-green font-bold flex-shrink-0">✓</span>
+                          <span className="text-ai-text-secondary">{achievement}</span>
                         </li>
                       ))}
                     </ul>
@@ -81,14 +81,14 @@ export default function Experience() {
 
                 {/* Timeline dot */}
                 <div className="hidden md:flex flex-col items-center">
-                  <div className="w-4 h-4 bg-hr-teal rounded-full border-4 border-white shadow-lg z-10 relative"></div>
-                  <div className="w-1 h-16 bg-gradient-to-b from-hr-teal to-transparent"></div>
+                  <div className="w-4 h-4 bg-ai-cyan rounded-full border-4 border-ai-bg shadow-lg z-10 relative"></div>
+                  <div className="w-1 h-16 bg-gradient-to-b from-ai-cyan to-transparent"></div>
                 </div>
 
                 {/* Mobile timeline indicator */}
                 <div className="md:hidden flex-1">
-                  <div className="absolute left-4 top-0 w-1 h-full bg-gradient-to-b from-hr-teal to-hr-green"></div>
-                  <div className="w-4 h-4 bg-hr-teal rounded-full border-4 border-white absolute left-2 top-4"></div>
+                  <div className="absolute left-4 top-0 w-1 h-full bg-gradient-to-b from-ai-cyan to-ai-purple"></div>
+                  <div className="w-4 h-4 bg-ai-cyan rounded-full border-4 border-ai-bg absolute left-2 top-4"></div>
                 </div>
               </div>
             ))}
@@ -97,32 +97,32 @@ export default function Experience() {
 
         {/* Education */}
         <div className="mt-20">
-          <h3 className="text-2xl font-bold text-hr-navy mb-8">Education</h3>
-          <div className="glass-card-dark p-8">
+          <h3 className="text-2xl font-bold text-ai-text mb-8">Education</h3>
+          <div className="glass-card-dark p-8 bg-ai-card border border-ai-border">
             <div className="flex justify-between items-start mb-2">
               <div>
-                <h4 className="text-xl font-bold text-hr-navy">Bachelor of Science in Computer Science</h4>
-                <p className="text-hr-teal font-semibold">University Name</p>
+                <h4 className="text-xl font-bold text-ai-text">Bachelor of Science in Computer Science</h4>
+                <p className="text-ai-cyan font-semibold">University Name</p>
               </div>
-              <span className="px-3 py-1 bg-hr-green/10 text-hr-green text-sm font-semibold rounded-full">
+              <span className="px-3 py-1 bg-ai-green/10 text-ai-green text-sm font-semibold rounded-full">
                 2016 - 2020
               </span>
             </div>
-            <p className="text-hr-dark">CGPA: 3.8/4.0 • President of Coding Club</p>
+            <p className="text-ai-text-secondary">CGPA: 3.8/4.0 • President of Coding Club</p>
           </div>
         </div>
 
         {/* Certifications */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold text-hr-navy mb-8">Certifications</h3>
+          <h3 className="text-2xl font-bold text-ai-text mb-8">Certifications</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="glass-card p-6 border-l-4 border-hr-teal">
-              <h4 className="font-bold text-hr-navy mb-1">AWS Solutions Architect</h4>
-              <p className="text-sm text-hr-dark">AWS • 2023</p>
+            <div className="glass-card p-6 border-l-4 border-ai-cyan bg-ai-card border border-ai-border">
+              <h4 className="font-bold text-ai-text mb-1">AWS Solutions Architect</h4>
+              <p className="text-sm text-ai-text-secondary">AWS • 2023</p>
             </div>
-            <div className="glass-card p-6 border-l-4 border-hr-green">
-              <h4 className="font-bold text-hr-navy mb-1">React Developer Certification</h4>
-              <p className="text-sm text-hr-dark">freeCodeCamp • 2022</p>
+            <div className="glass-card p-6 border-l-4 border-ai-green bg-ai-card border border-ai-border">
+              <h4 className="font-bold text-ai-text mb-1">React Developer Certification</h4>
+              <p className="text-sm text-ai-text-secondary">freeCodeCamp • 2022</p>
             </div>
           </div>
         </div>

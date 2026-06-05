@@ -24,14 +24,14 @@ export default function Navbar({ theme, toggleTheme }) {
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white shadow-lg' 
-        : 'bg-white/80 backdrop-blur-md'
+        ? 'bg-ai-bg-secondary shadow-lg border-b border-ai-border'
+        : 'bg-ai-bg-secondary/80 backdrop-blur-md border-b border-ai-border/50'
     }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href="#" className="text-2xl font-bold text-hr-navy">
-            Your<span className="text-hr-teal">Dev</span>
+          <a href="#" className="text-2xl font-bold text-ai-text">
+            Your<span className="text-ai-cyan">Dev</span>
           </a>
 
           {/* Desktop Nav */}
@@ -40,7 +40,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-hr-dark hover:text-hr-teal transition-colors font-medium"
+                className="text-ai-text-secondary hover:text-ai-cyan transition-colors font-medium"
               >
                 {link.name}
               </a>
@@ -51,14 +51,14 @@ export default function Navbar({ theme, toggleTheme }) {
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleTheme}
-              className="p-2 hover:bg-hr-gray rounded-lg transition-colors text-hr-navy"
+              className="p-2 hover:bg-ai-border rounded-lg transition-colors text-ai-cyan"
             >
               {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
             </button>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-hr-navy"
+              className="md:hidden p-2 text-ai-text"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -73,7 +73,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-4 py-2 text-hr-dark hover:bg-hr-gray rounded-lg transition-colors"
+                className="block px-4 py-2 text-ai-text-secondary hover:bg-ai-border rounded-lg transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

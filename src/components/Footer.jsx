@@ -30,45 +30,45 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-hr-navy text-white pt-16 pb-8">
+    <footer className="bg-ai-bg-secondary text-ai-text pt-16 pb-8 border-t border-ai-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer */}
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold mb-4">
-              Your<span className="text-hr-teal">Dev</span>
+              Your<span className="text-ai-cyan">Dev</span>
             </h3>
-            <p className="text-hr-gray text-sm leading-relaxed">
+            <p className="text-ai-text-secondary text-sm leading-relaxed">
               A passionate developer creating beautiful, functional web experiences.
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="font-semibold mb-4 text-hr-teal">Navigation</h4>
+            <h4 className="font-semibold mb-4 text-ai-cyan">Navigation</h4>
             <ul className="space-y-2">
-              <li><a href="#about" className="text-hr-gray hover:text-white transition-colors">About</a></li>
-              <li><a href="#skills" className="text-hr-gray hover:text-white transition-colors">Skills</a></li>
-              <li><a href="#projects" className="text-hr-gray hover:text-white transition-colors">Projects</a></li>
-              <li><a href="#experience" className="text-hr-gray hover:text-white transition-colors">Experience</a></li>
+              <li><a href="#about" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">About</a></li>
+              <li><a href="#skills" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Skills</a></li>
+              <li><a href="#projects" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Projects</a></li>
+              <li><a href="#experience" className="text-ai-text-secondary hover:text-ai-cyan transition-colors">Experience</a></li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4 text-hr-teal">Resources</h4>
+            <h4 className="font-semibold mb-4 text-ai-purple">Resources</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-hr-gray hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-hr-gray hover:text-white transition-colors">Resume</a></li>
-              <li><a href="#" className="text-hr-gray hover:text-white transition-colors">Portfolio</a></li>
-              <li><a href="#" className="text-hr-gray hover:text-white transition-colors">Testimonials</a></li>
+              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Blog</a></li>
+              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Resume</a></li>
+              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Portfolio</a></li>
+              <li><a href="#" className="text-ai-text-secondary hover:text-ai-purple transition-colors">Testimonials</a></li>
             </ul>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="font-semibold mb-4 text-hr-teal">Follow Me</h4>
+            <h4 className="font-semibold mb-4 text-ai-blue">Follow Me</h4>
             <div className="flex gap-4">
               {socialLinks.map((social, idx) => {
                 const Icon = social.icon
@@ -78,7 +78,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-hr-teal hover:bg-hr-green transition-colors flex items-center justify-center text-white"
+                    className="w-10 h-10 rounded-full bg-ai-card border border-ai-border hover:bg-ai-blue hover:border-ai-blue transition-colors flex items-center justify-center text-ai-text"
                     aria-label={social.label}
                   >
                     <Icon size={18} />
@@ -90,19 +90,19 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-hr-gray/20 my-8"></div>
+        <div className="border-t border-ai-border my-8"></div>
 
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-hr-gray text-sm">
-            © {currentYear} Your Name. All rights reserved. Built with <span className="text-hr-teal">❤</span> and React.
+          <p className="text-ai-text-secondary text-sm">
+            © {currentYear} Your Name. All rights reserved. Built with <span className="text-ai-cyan">care</span> and React.
           </p>
 
           {/* Back to Top */}
           {showScroll && (
             <button
               onClick={scrollToTop}
-              className="mt-4 md:mt-0 p-3 rounded-full bg-hr-teal hover:bg-hr-green transition-colors flex items-center gap-2"
+              className="mt-4 md:mt-0 p-3 rounded-full bg-ai-purple hover:bg-ai-blue text-ai-text transition-colors flex items-center gap-2"
               aria-label="Back to top"
             >
               <FaArrowUp size={18} />

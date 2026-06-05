@@ -7,34 +7,34 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 :root {
-    /* Color Palette - Dark Theme (Default) */
-    --bg-dark: #0a0e27;
-    --bg-darker: #050709;
-    --surface-primary: rgba(20, 28, 55, 0.4);
-    --surface-secondary: rgba(30, 41, 75, 0.5);
-    --surface-hover: rgba(45, 60, 120, 0.6);
+    /* Dark AI / Developer OS palette */
+    --bg-dark: #0A0A0F;
+    --bg-darker: #12121A;
+    --surface-primary: rgba(24, 24, 37, 0.82);
+    --surface-secondary: rgba(18, 18, 26, 0.92);
+    --surface-hover: rgba(39, 39, 42, 0.9);
     
-    --border-light: rgba(255, 255, 255, 0.08);
-    --border-medium: rgba(255, 255, 255, 0.15);
+    --border-light: #27272A;
+    --border-medium: rgba(161, 161, 170, 0.28);
     
     /* Text Colors */
-    --text-primary: #f0f4f8;
-    --text-secondary: #a0aec0;
-    --text-muted: #718096;
+    --text-primary: #F5F5F7;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
     
-    /* Accent Colors - Neon Palette */
-    --primary: #00d9ff;      /* Cyan */
-    --primary-dark: #00a8cc;
-    --secondary: #b300ff;    /* Purple */
-    --accent: #ff0080;       /* Magenta */
-    --success: #00ff88;      /* Neon Green */
-    --warning: #ffa500;      /* Orange */
+    /* Accent Colors */
+    --primary: #06B6D4;
+    --primary-dark: #3B82F6;
+    --secondary: #8B5CF6;
+    --accent: #3B82F6;
+    --success: #22C55E;
+    --warning: #8B5CF6;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #00d9ff 0%, #b300ff 100%);
-    --gradient-secondary: linear-gradient(135deg, #b300ff 0%, #ff0080 100%);
-    --gradient-text: linear-gradient(135deg, #00d9ff, #b300ff, #ff0080);
-    --gradient-dark: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(179, 0, 255, 0.1));
+    --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #06B6D4 100%);
+    --gradient-secondary: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+    --gradient-text: linear-gradient(135deg, #8B5CF6, #3B82F6, #06B6D4);
+    --gradient-dark: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(6, 182, 212, 0.08));
     
     /* Shadow System - Premium */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -43,14 +43,24 @@
     --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.6);
     
     /* Glow Effects */
-    --glow-primary: 0 0 20px rgba(0, 217, 255, 0.3), 0 0 40px rgba(0, 217, 255, 0.15);
-    --glow-secondary: 0 0 20px rgba(179, 0, 255, 0.3), 0 0 40px rgba(179, 0, 255, 0.15);
-    --glow-accent: 0 0 20px rgba(255, 0, 128, 0.3), 0 0 40px rgba(255, 0, 128, 0.15);
+    --glow-primary: 0 0 20px rgba(6, 182, 212, 0.28), 0 0 40px rgba(6, 182, 212, 0.12);
+    --glow-secondary: 0 0 20px rgba(139, 92, 246, 0.28), 0 0 40px rgba(139, 92, 246, 0.12);
+    --glow-accent: 0 0 20px rgba(59, 130, 246, 0.28), 0 0 40px rgba(59, 130, 246, 0.12);
     
     /* Typography */
     --font-display: 'Sora', 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'Space Mono', monospace;
+
+    /* Component aliases */
+    --bg-color: var(--bg-dark);
+    --surface-color: var(--surface-primary);
+    --border-color: var(--border-light);
+    --primary-color: var(--primary);
+    --secondary-color: var(--secondary);
+    --gradient: var(--gradient-primary);
+    --shadow-glow: var(--glow-primary);
+    --font-heading: var(--font-display);
     
     /* Spacing */
     --spacing-unit: 1rem;
