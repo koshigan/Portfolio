@@ -1,6 +1,6 @@
 import React, { useRef, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
-import { Code, Database, Globe, Cpu, Brain, Terminal } from 'lucide-react'
+import { Database, Globe, Cpu, Terminal } from 'lucide-react'
 
 // Inline micro 3D orb — rendered per skill card for a living preview
 function SkillOrb({ color }) {
@@ -48,24 +48,6 @@ export default function Skills() {
     },
     {
       index: '04',
-      title: 'Cloud & DevOps',
-      description: 'Git, GitHub, Vercel, Docker containers, automated deploy runs.',
-      level: 70,
-      icon: Code,
-      color: '#10b981',
-      tags: ['Git', 'GitHub', 'Vercel', 'Docker'],
-    },
-    {
-      index: '05',
-      title: 'AI & Machine Learning',
-      description: 'Speech recognition APIs, predictive regression models, statistical data audits.',
-      level: 76,
-      icon: Brain,
-      color: '#ec4899',
-      tags: ['Web Speech API', 'ML Models', 'NLP'],
-    },
-    {
-      index: '06',
       title: 'Connected Systems',
       description: 'ESP32 boards, telemetry nodes, sensor logic calibration, MQTT protocols.',
       level: 82,
@@ -215,8 +197,8 @@ export default function Skills() {
           <div className="flex gap-4 flex-wrap justify-center">
             {[
               'React', 'JavaScript', 'Java', 'Python', 'PHP', 'HTML5', 'CSS3',
-              'Node.js', 'MySQL', 'Git', 'Vercel', 'Docker', 'ESP32', 'MQTT',
-              'Web Speech API', 'REST API', 'Three.js', 'Framer Motion',
+              'Node.js', 'MySQL', 'Git', 'Vercel', 'ESP32', 'MQTT',
+              'REST API', 'Three.js', 'Framer Motion',
             ].map((tech, i) => (
               <motion.span
                 key={tech}

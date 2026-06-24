@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Briefcase, Award } from 'lucide-react'
+import { Briefcase } from 'lucide-react'
 
 export default function Experience() {
   const experiences = [
@@ -24,27 +24,6 @@ export default function Experience() {
       company: 'University Program',
       description: 'Acquiring deep foundations in circuit logic, signal communications, system processing protocols, microcontrollers, and low-level firmware engineering.',
       tag: 'Education'
-    }
-  ]
-
-  const certifications = [
-    {
-      title: 'AWS Certified Cloud Practitioner',
-      issuer: 'Amazon Web Services',
-      date: '2025',
-      desc: 'Foundational cloud architectural principles, security practices, and infrastructure billing configurations.'
-    },
-    {
-      title: 'React Developer Certification',
-      issuer: 'freeCodeCamp Developer Path',
-      date: '2024',
-      desc: 'Complete React components structure, conditional rendering state loops, hooks integration, and ES6 specs.'
-    },
-    {
-      title: 'IoT & Telemetry Node Configurations',
-      issuer: 'Technical Academy Partner',
-      date: '2024',
-      desc: 'Embedded system setups linking ESP32 boards, microcontrollers, sensor nodes, and MQTT message routing.'
     }
   ]
 
@@ -101,45 +80,6 @@ export default function Experience() {
               </div>
             </motion.article>
           ))}
-        </div>
-
-        {/* Certifications block */}
-        <div className="mt-32">
-          <h3 className="text-2xl font-bold tracking-tight text-ai-text mb-8 font-sora">
-            Certifications & Credentials
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="studio-card p-6 rounded-2xl border border-ai-border bg-ai-card/30 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="p-2 bg-ai-purple/10 rounded-lg text-ai-purple">
-                      <Award size={18} />
-                    </div>
-                    <span className="text-[10px] font-mono text-ai-text-secondary uppercase">
-                      {cert.date}
-                    </span>
-                  </div>
-                  <h4 className="text-base font-semibold tracking-tight text-ai-text mb-1 font-sora">
-                    {cert.title}
-                  </h4>
-                  <span className="block text-xs font-mono text-ai-cyan mb-3">
-                    {cert.issuer}
-                  </span>
-                  <p className="text-xs text-ai-text-secondary leading-relaxed">
-                    {cert.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
 
       </div>
