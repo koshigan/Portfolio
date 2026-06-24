@@ -9,6 +9,7 @@ export default function DeveloperOS() {
     { cmd: 'system_info', output: 'Koshigan OS v2.6 initialized. Type `/help` to see available commands.' }
   ])
   const terminalEndRef = useRef(null)
+  const isInitialMount = useRef(true)
 
   const handleTerminalSubmit = (e) => {
     e.preventDefault()
@@ -44,8 +45,12 @@ export default function DeveloperOS() {
     setTerminalInput('')
   }
 
-  // Scroll to bottom of terminal when logs print
+  // Scroll to bottom of terminal when logs print (skip on initial mount to avoid scrolling page on load)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [terminalHistory])
 
